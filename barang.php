@@ -1,5 +1,8 @@
 <?php 
+require 'function/function.php';
 require 'template/header.php';
+
+$query_barang = view("SELECT * FROM tb_barang");
 
 ?>
 
@@ -33,16 +36,28 @@ require 'template/header.php';
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
+                                <?php 
+                                $n = 1;
+                                while($row = mysqli_fetch_assoc($query_barang)) :?>
                                 <tbody>
                                     <tr>
-                                        <td>Tiger Nixon</td>
-                                        <td>System Architect</td>
-                                        <td>Edinburgh</td>
-                                        <td>61</td>
-                                        <td>2011/04/25</td>
-                                        <td>$320,800</td>
-                                        <td>hapus</td>
+                                        <td><?= $n++; ?></td>
+                                        <td><?=  $row['namaBarang'] ?></td>
+                                        <td><?= $row['tanggalMasuk'] ?></td>
+                                        <td><?= $row['stok'] ?></td>
+                                        <td><?= $row['kondisiBarang'] ?></td>
+                                        <td><?= $row['keterangan'] ?></td>
+                                        <td>
+                                            <div class="">
+                                                <a href="editBarang.php?idbarang=<?= $row['idbarang'] ?>"><button
+                                                        class="btn mb-2 btn-success" type="button" title="Edit"><i
+                                                            class="fas fa-edit"></i></button></a>
+                                                <a href="#"><button class="btn mb-2 btn-danger" type="button"
+                                                        title="Hapus" onclick="return confirm('Yakin Mau Hapus ?')"><i
+                                                            class="fas fa-trash-alt"></i></button></a>
+                                            </div>
+                                        </td>
                                     </tr>
-
+                                    <?php endwhile ?>
                                     <?php require 'template/footer.php' 
                                     ?>
