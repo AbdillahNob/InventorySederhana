@@ -49,7 +49,7 @@ $query_barang = view("SELECT * FROM tb_barang");
                                         <td><?= $row['keterangan'] ?></td>
                                         <td>
                                             <div class="">
-                                                <a href="editBarang.php?idbarang=<?= $row['idbarang'] ?>"><button
+                                                <a href="editBarang.php?idBarang=<?= $row['idBarang'] ?>"><button
                                                         class="btn mb-2 btn-success" type="button" title="Edit"><i
                                                             class="fas fa-edit"></i></button></a>
                                                 <a href="#"><button class="btn mb-2 btn-danger" type="button"

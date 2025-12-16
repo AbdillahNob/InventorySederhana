@@ -34,4 +34,25 @@ function tambah($data, $noFile){
         return mysqli_affected_rows($con);
 }
 
+function edit($data){
+    global $con;
+    
+    $idBarang = $data['idBarang'];
+    $namaBarang = mysqli_real_escape_string($con, stripslashes($data['namaBarang']));
+    $tanggalMasuk = $data['tanggalMasuk'];
+    $stok = $data['stok'];
+    $kondisiBarang = $data['kondisiBarang'];
+    $keterangan = mysqli_real_escape_string($con, stripslashes($data['keterangan']));
+    
+    $query = "UPDATE tb_barang SET 
+                        namaBarang='$namaBarang', 
+                        tanggalMasuk='$tanggalMasuk', 
+                        stok='$stok', 
+                        kondisiBarang='$kondisiBarang', 
+                        keterangan='$keterangan' 
+                        WHERE idBarang ='$idBarang'";
+    mysqli_query($con, $query);
+
+    return mysqli_affected_rows($con);
+}
 ?>
