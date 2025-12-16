@@ -26,6 +26,7 @@ if(isset($_POST['login']) ){
             // 2. Validasi Password
             if(password_verify($password, $row['password'])){
                 $_SESSION['halaman'] = true;    
+                $_SESSION['username'] = $row['username'];
                 echo"
                 <script type='text/javascript'>
                     setTimeout(function () {
