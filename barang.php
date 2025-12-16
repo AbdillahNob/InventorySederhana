@@ -15,8 +15,12 @@ require 'template/header.php';
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Data Barang Inventory Organisasi</h4>
-                        <div class="table-responsive">
+                        <div class="card-title">
+                            <h4 class="card-title">Data Barang Inventory Organisasi</h4>
+                        </div>
+                        <a href="tambahBarang.php"><button class="btn btn-primary" type="submit"
+                                title="Tambah">Tambah</button></a>
+                        <div class="table-responsive text-nowrap">
                             <table class="table table-striped table-bordered zero-configuration">
                                 <thead>
                                     <tr>
@@ -25,7 +29,8 @@ require 'template/header.php';
                                         <th>Tanggal Masuk</th>
                                         <th>Stok</th>
                                         <th>Kondisi</th>
-                                        <th>Keterangan</th>
+                                        <th>Ket.Barang</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -36,6 +41,7 @@ require 'template/header.php';
                                         <td>61</td>
                                         <td>2011/04/25</td>
                                         <td>$320,800</td>
+                                        <td>hapus</td>
                                     </tr>
 
                                     <?php require 'template/footer.php' 

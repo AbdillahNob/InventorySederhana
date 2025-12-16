@@ -1,3 +1,17 @@
+<?php 
+    session_start();
+
+    if(!isset($_SESSION['halaman'])){
+        echo"
+            <script>
+                window.location.replace('index.php');
+            </script>
+        ";
+    }
+    
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
