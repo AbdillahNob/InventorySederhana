@@ -1,57 +1,63 @@
 <?php 
-require 'function/function.php';
 require 'template/header.php';
+require 'function/function.php';
 
 if(isset($_POST['submit'])){
     $no_file = $_GET['no_file'];
        
-    $kondisi = $_POST['kondisi'];
-    if(!$kondisi){
-        echo "
-        <script>
-            alert('Maaf anda harus input Kondisi');
-            window.setTimeout(function(){
-                window.location.replace('tambahBarang.php');
-            },500);
-        </script>
-    ";
-    return false;
-    }
-
-    if(tambah($_POST, $no_file) > 0){
-        echo"
+    if(!isset($_POST['kondisiBarang'])){
+    echo"
         <script type='text/javascript'>
             setTimeout(function () {
                 Swal.fire({
                     title: 'INFO',
-                    text: 'Berhasil Barang',
-                    icon: 'success',
+                    text: 'Maaf anda harus input Kondisi Barang',
+                    icon: 'warning',
                     timer: '3200',
                     showConfirmButton: false
                 });
             },10);
             window.setTimeout(function(){
-                window.location.replace('barang.php');
+                window.location.replace('tambahBarang.php');
             },2000);
         </script>
         ";  
     }else{
-        echo"
-                <script type='text/javascript'>
-                    setTimeout(function () {
-                        Swal.fire({
-                            title: 'INFO',
-                            text: 'Gagal Tambah Barang',
-                            icon: 'warning',
-                            timer: '3200',
-                            showConfirmButton: false
-                        });
-                    },10);
-                    window.setTimeout(function(){
-                        window.location.replace('barang.php');
-                    },1500);
-                </script>
-                ";
+        if(tambah($_POST, $no_file) > 0){
+            echo"
+            <script type='text/javascript'>
+                setTimeout(function () {
+                    Swal.fire({
+                        title: 'INFO',
+                        text: 'Berhasil Tambah Barang',
+                        icon: 'success',
+                        timer: '3200',
+                        showConfirmButton: false
+                    });
+                },10);
+                window.setTimeout(function(){
+                    window.location.replace('barang.php');
+                },2000);
+            </script>
+            ";  
+        }else{
+            echo"
+                    <script type='text/javascript'>
+                        setTimeout(function () {
+                            Swal.fire({
+                                title: 'INFO',
+                                text: 'Gagal Tambah Barang',
+                                icon: 'warning',
+                                timer: '3200',
+                                showConfirmButton: false
+                            });
+                        },10);
+                        window.setTimeout(function(){
+                            window.location.replace('barang.php');
+                        },1500);
+                    </script>
+                    ";
+        }
     }
 }
 
