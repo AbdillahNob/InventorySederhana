@@ -1,3 +1,103 @@
+<?php 
+
+require 'function/function.php';
+
+if(isset($_POST['submit'])){
+
+    $noFile = $_GET['noFile'];
+    $password = $_POST['password'];
+    $rePassword = $_POST['rePassword'];
+    $username = $_POST['username'];
+
+    // 1. Validasi Konfirmasi Password
+    if($password === $rePassword ){
+
+        $resultN = view("SELECT * FROM tb_user WHERE username='$username'");
+        // 2. Validasi agr username hanya blh 1 atau username yg di input sdh di daftar sebelumnya.
+        if(mysqli_num_rows($resultN) == 0){
+                        
+            // 3. Validasi Insert dan perintah masukkan Data
+            if(tambah($_POST, $noFile) > 0){
+                echo"
+                <script type='text/javascript'>
+                    setTimeout(function () {
+                        Swal.fire({
+                            title: 'INFO',
+                            text: 'Berhasil Register Akun',
+                            icon: 'success',
+                            timer: '3200',
+                            showConfirmButton: false
+                        });
+                    },10);
+                    window.setTimeout(function(){
+                        window.location.replace('index.php');
+                    },2000);
+                </script>
+                ";
+
+            // 3. End Validasi dan perintah Tambah
+            }else{
+                echo"
+                <script type='text/javascript'>
+                    setTimeout(function () {
+                        Swal.fire({
+                            title: 'INFO',
+                            text: 'Gagal Register Akun',
+                            icon: 'warning',
+                            timer: '3200',
+                            showConfirmButton: false
+                        });
+                    },10);
+                    window.setTimeout(function(){
+                        window.location.replace('index.php');
+                    },1500);
+                </script>
+                ";
+            }
+            
+        // 2. End Validasi Username
+        }else{
+            echo"
+                <script type='text/javascript'>
+                    setTimeout(function () {
+                        Swal.fire({
+                            title: 'INFO',
+                            text: 'Username anda sudah terdaftar sebelumnya',
+                            icon: 'warning',
+                            timer: '3200',
+                            showConfirmButton: false
+                        });
+                    },10);
+                    window.setTimeout(function(){
+                        window.location.replace('daftarAkun.php');
+                    },2500);
+                </script>
+                ";
+        }
+
+    // 1. End Validasi Konfirmasi Password  
+    }else{
+        echo"
+            <script type='text/javascript'>
+                setTimeout(function () {
+                    Swal.fire({
+                        title: 'INFO',
+                        text: 'Konfirmasi Password anda salah!',
+                        icon: 'warning',
+                        timer: '3200',
+                        showConfirmButton: false
+                    });
+                },10);
+                window.setTimeout(function(){
+                    window.location.replace('daftarAkun.php');
+                },2500);
+            </script>
+        ";
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html class="h-100" lang="en">
 
