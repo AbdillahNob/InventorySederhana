@@ -1,3 +1,93 @@
+<?php 
+require 'function/function.php';
+
+session_start();
+
+// Jika Login tapi belum LogOut
+if(isset($_SESSION['halaman'])){
+    echo"
+        <script>
+            window.location.replace('dashboard.php');
+        </script>
+    ";
+}
+
+if(isset($_POST['login']) ){
+
+    $username = $_POST['username'];    
+    $result = view("SELECT * FROM tb_user WHERE username='$username'");
+
+    // 1. Validasi Username
+    if(mysqli_num_rows($result) > 0){                
+        $row = mysqli_fetch_assoc($result);
+
+            $password = $_POST['password'];
+
+            // 2. Validasi Password
+            if(password_verify($password, $row['password'])){
+                $_SESSION['halaman'] = true;    
+                echo"
+                <script type='text/javascript'>
+                    setTimeout(function () {
+                        Swal.fire({
+                            title: 'INFO',
+                            text: 'Berhasil Login',
+                            icon: 'success',
+                            timer: '3200',
+                            showConfirmButton: false
+                        });
+                    },10);
+                    window.setTimeout(function(){
+                        window.location.replace('dashboard.php');
+                    },2000);
+                </script>
+                ";
+
+            // 2. End Validasi Password
+            }else{
+                echo"
+                <script type='text/javascript'>
+                    setTimeout(function () {
+                        Swal.fire({
+                            title: 'INFO',
+                            text: 'Password Anda Salah!',
+                            icon: 'warning',
+                            timer: '3200',
+                            showConfirmButton: false
+                        });
+                    },10);
+                    window.setTimeout(function(){
+                        window.location.replace('index.php');
+                    },1500);
+                </script>
+                ";
+            }
+                
+                
+    //1. End Validasi Username 
+    }else{              
+        echo"
+        <script type='text/javascript'>
+            setTimeout(function () {
+                Swal.fire({
+                    title: 'INFO',
+                    text: 'Maaf username Anda belum terdaftar !',
+                    icon: 'warning',
+                    timer: '3200',
+                    showConfirmButton: false
+                });
+            },10);
+            window.setTimeout(function(){
+                window.location.replace('index.php');
+            },2500);
+        </script>
+        ";
+    }
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html class="h-100" lang="en">
 
