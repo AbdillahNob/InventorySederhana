@@ -1,6 +1,15 @@
 <?php
 require 'function/function.php';
-require 'template/header.php'
+require 'template/header.php';
+
+$queryBarangBaik = view("SELECT SUM(stok) AS total FROM tb_barang WHERE kondisiBarang='Baik'");
+$queryBarangRusak = view("SELECT SUM(stok) AS total FROM tb_barang WHERE kondisiBarang='Rusak'");
+$queryBarangHilang = view("SELECT SUM(stok) AS total FROM tb_barang WHERE kondisiBarang='Hilang'");
+
+$barangBaik = mysqli_fetch_assoc($queryBarangBaik);
+$barangRusak = mysqli_fetch_assoc($queryBarangRusak);
+$barangHilang = mysqli_fetch_assoc($queryBarangHilang);
+
 ?>
 
 <!--**********************************
@@ -13,10 +22,9 @@ require 'template/header.php'
             <div class="col-lg-4 col-sm-6">
                 <div class="card gradient-1">
                     <div class="card-body">
-                        <h3 class="card-title text-white">Products Sold</h3>
+                        <h3 class="card-title text-white">Barang dengan kondisi BAIK</h3>
                         <div class="d-inline-block">
-                            <h2 class="text-white">4565</h2>
-                            <p class="text-white mb-0">Jan - March 2019</p>
+                            <h2 class="text-white"><?= $barangBaik['total'] ?? 0 ?></h2>
                         </div>
                         <span class="float-right display-5 opacity-5"><i class="fa fa-shopping-cart"></i></span>
                     </div>
@@ -25,10 +33,9 @@ require 'template/header.php'
             <div class="col-lg-4 col-sm-6">
                 <div class="card gradient-2">
                     <div class="card-body">
-                        <h3 class="card-title text-white">Net Profit</h3>
+                        <h3 class="card-title text-white">Barang dengan kondisi Hilang</h3>
                         <div class="d-inline-block">
-                            <h2 class="text-white">$ 8541</h2>
-                            <p class="text-white mb-0">Jan - March 2019</p>
+                            <h2 class="text-white"><?= $barangHilang['total'] ?? 0 ?></h2>
                         </div>
                         <span class="float-right display-5 opacity-5"><i class="fa fa-money"></i></span>
                     </div>
@@ -37,24 +44,12 @@ require 'template/header.php'
             <div class="col-lg-4 col-sm-6">
                 <div class="card gradient-3">
                     <div class="card-body">
-                        <h3 class="card-title text-white">New Customers</h3>
+                        <h3 class="card-title text-white">Barang dengan kondisi Rusak</h3>
                         <div class="d-inline-block">
-                            <h2 class="text-white">4565</h2>
-                            <p class="text-white mb-0">Jan - March 2019</p>
+                            <h2 class="text-white"><?= $barangRusak['total'] ?? 0  ?>
+                            </h2>
                         </div>
-                        <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="card gradient-4">
-                    <div class="card-body">
-                        <h3 class="card-title text-white">Customer Satisfaction</h3>
-                        <div class="d-inline-block">
-                            <h2 class="text-white">99%</h2>
-                            <p class="text-white mb-0">Jan - March 2019</p>
-                        </div>
-                        <span class="float-right display-5 opacity-5"><i class="fa fa-heart"></i></span>
+                        <span class="float-right display-5 opacity-5"><i class="fa fa-shopping-cart"></i></span>
                     </div>
                 </div>
             </div>

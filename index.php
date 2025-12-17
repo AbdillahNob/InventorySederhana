@@ -138,7 +138,7 @@ if(isset($_POST['login']) ){
                         <div class="card login-form mb-0">
                             <div class="card-body pt-5">
                                 <a class="text-center" href="index.html">
-                                    <h4>Inventory MARINA R</h4>
+                                    <h4>Inventory ORGANISASI</h4>
                                 </a>
 
                                 <form class="mt-5 mb-5 login-input" action="" method="POST">
