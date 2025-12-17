@@ -55,4 +55,13 @@ function edit($data){
 
     return mysqli_affected_rows($con);
 }
+
+function hapus($idBarang){
+    global $con;
+    
+    $query = "DELETE FROM tb_barang WHERE idBarang ='$idBarang'"; 
+
+    mysqli_query($con, $query);
+    return mysqli_affected_rows($con);
+}
 ?>

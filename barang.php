@@ -52,8 +52,9 @@ $query_barang = view("SELECT * FROM tb_barang");
                                                 <a href="editBarang.php?idBarang=<?= $row['idBarang'] ?>"><button
                                                         class="btn mb-2 btn-success" type="button" title="Edit"><i
                                                             class="fas fa-edit"></i></button></a>
-                                                <a href="#"><button class="btn mb-2 btn-danger" type="button"
-                                                        title="Hapus" onclick="return confirm('Yakin Mau Hapus ?')"><i
+                                                <a href="hapusBarang.php?idBarang=<?= $row['idBarang'] ?>"><button
+                                                        class="btn mb-2 btn-danger" type="button" title="Hapus"
+                                                        onclick="return confirm('Yakin Mau Hapus ?')"><i
                                                             class="fas fa-trash-alt"></i></button></a>
                                             </div>
                                         </td>
