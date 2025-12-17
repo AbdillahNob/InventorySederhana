@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2025 at 02:29 AM
+-- Generation Time: Dec 17, 2025 at 03:29 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -46,6 +46,25 @@ INSERT INTO `tb_barang` (`idBarang`, `namaBarang`, `tanggalMasuk`, `stok`, `kond
 (7, 'meja', '2025-12-17', 3, 'Hilang', 'asas'),
 (8, 'Mobil', '2025-12-17', 3, 'Rusak', 'asdsadsa');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_user`
+--
+
+CREATE TABLE `tb_user` (
+  `idUser` int(11) NOT NULL,
+  `username` varchar(200) NOT NULL,
+  `password` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tb_user`
+--
+
+INSERT INTO `tb_user` (`idUser`, `username`, `password`) VALUES
+(1, 'abdillah', '$2y$10$HHWXtUxK68lXTSU0DEEqJ.fIPqi8uwyMkQQT93CEKMKCjukUvUVSS');
+
 --
 -- Indexes for dumped tables
 --
@@ -57,6 +76,12 @@ ALTER TABLE `tb_barang`
   ADD PRIMARY KEY (`idBarang`);
 
 --
+-- Indexes for table `tb_user`
+--
+ALTER TABLE `tb_user`
+  ADD PRIMARY KEY (`idUser`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -65,6 +90,12 @@ ALTER TABLE `tb_barang`
 --
 ALTER TABLE `tb_barang`
   MODIFY `idBarang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `tb_user`
+--
+ALTER TABLE `tb_user`
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
